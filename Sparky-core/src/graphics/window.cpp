@@ -28,18 +28,23 @@ namespace sparky {
 				return false;
 			}
 			glfwMakeContextCurrent(m_window);
+			
 			return true;
 		}
 
 		void Window::clear() const {
 			glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 		}
+		
 
 		void Window::update()   {
 			
 			glfwPollEvents();
-			glfwGetWindowFrameSize(m_window, &m_width, &m_height, nullptr, nullptr);
-			glViewport(15, 15, m_width, m_height);
+			//glfwGetWindowFrameSize(m_window, 0, 0, &m_width, &m_height);
+			glfwGetFramebufferSize(m_window, &m_width, &m_height);
+			glViewport(0, 0, m_width, m_height);
+			
+			
 			glfwSwapBuffers(m_window);
 			
 		}
